@@ -1,0 +1,73 @@
+//Given three arrays sorted in increasing order. Find the elements that are common in all three arrays.
+//Note: can you take care of the duplicates without using any additional Data Structure?
+//GeeksforGeeks : https://practice.geeksforgeeks.org/problems/common-elements1132/1#
+
+
+class Solution
+{
+    ArrayList<Integer> commonElements(int A[], int B[], int C[], int n1, int n2, int n3) 
+    {
+        // code here
+        Map<Integer,Integer> mp = new HashMap<Integer,Integer>();
+        
+        mp.put(A[0],1);
+        
+        for(int i =1 ; i< n1 ; i++)
+        {  if(A[i] != A[i-1]) 
+            mp.put(A[i], 1);
+        }
+        
+        if(mp.containsKey(B[0]))
+            {
+                mp.put(B[0], mp.get(B[0]) + 1);
+            }
+        else
+            mp.put(B[0],1);
+        for(int i =1 ; i< n2 ; i++)
+        {
+            if(mp.containsKey(B[i]) && (B[i] != B[i-1]))
+            {
+                mp.put(B[i], mp.get(B[i]) + 1);
+            }
+            
+        }
+        
+        if(mp.containsKey(C[0]))
+            {
+                mp.put(C[0], mp.get(C[0]) + 1);
+            }
+        else
+            mp.put(C[0],1);
+        
+        for(int i =1 ; i< n3 ; i++)
+        {   if(mp.containsKey(C[i]) && (C[i] != C[i-1]))
+            {
+            mp.put(C[i], mp.get(C[i]) + 1);
+            }
+
+            
+        }
+        
+        Map<Integer, ArrayList<Integer>> reverseMap = new HashMap<>();
+
+        for (Map.Entry<Integer,Integer> entry : mp.entrySet()) {
+            if (!reverseMap.containsKey(entry.getValue())) {
+                reverseMap.put(entry.getValue(), new ArrayList<>());
+            }
+            ArrayList<Integer> keys = reverseMap.get(entry.getValue());
+            keys.add(entry.getKey());
+            reverseMap.put(entry.getValue(), keys);
+        }
+        
+        if(reverseMap.get(3) == null)
+            return new ArrayList<Integer>() ;
+            
+        //<Integer> list = new ArrayList<Integer>();
+        
+        //for()
+        
+        Collections.sort(reverseMap.get(3));
+        return reverseMap.get(3);
+    }
+}
+
