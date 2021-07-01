@@ -1,0 +1,46 @@
+//Given an array Arr that contains N integers (may be positive, negative or zero). Find the product of the maximum product subarray.
+
+
+class Solution {
+    // Function to find maximum product subarray
+    long maxProduct(int[] arr, int n) {
+        // code here
+        
+        long prod = 1;
+        long max = arr[0];
+        int count =0;
+        for(int i = 0; i < n; i++)
+        {
+            if(arr[i] != 0)
+            {
+                prod *= arr[i];
+            }
+            else{
+                prod = 1;
+                count++;
+            }
+                
+            
+            max = Math.max(max, prod);
+        }
+        
+        if(count == n)
+        {
+            return 0;
+        }
+        
+        prod = 1;
+        long ans1 = Integer.MIN_VALUE;
+        for(int i = n-1; i >= 0; --i) {
+            if(arr[i] != 0)
+                prod *= arr[i];
+            else
+                prod = 1;
+        ans1 = Math.max(ans1, prod);
+        }
+return Math.max(max, ans1);
+
+        
+        //return max;
+    }
+}
