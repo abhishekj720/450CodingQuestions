@@ -1,0 +1,16 @@
+
+
+// this method converts the string to char array 
+ // sorts the char array
+  // convert the char array to string and return it
+  
+ static String sortString(String str) {
+  
+    char[] charArray = str.toCharArray();
+    Arrays.sort(charArray);
+
+    // convert char array back to string
+    str = String.valueOf(charArray);
+
+    return str;
+  }
