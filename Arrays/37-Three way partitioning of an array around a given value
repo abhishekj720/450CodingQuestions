@@ -1,0 +1,47 @@
+//Given an array and a range [lowVal, highVal], partition the array around the range such that array is divided in three parts. 
+//1) All elements smaller than lowVal come first. 
+//2) All elements in range lowVal to highVVal come next. 
+//3) All elements greater than highVVal appear in the end. 
+//The individual elements of three sets can appear in any order.
+
+
+
+class Solution{
+    //Function to partition the array around the range such 
+    //that array is divided into three parts.
+    public void threeWayPartition(int array[], int a, int b)
+    {
+        // code here 
+        //Arrays.sort(array);
+        
+        int ini =0;
+        int fin = array.length -1;
+        //int mid=0;
+        int temp;
+        int i =0;
+        while(i <= fin)
+        {
+            if(array[i] <a )
+            {   temp = array[ini];
+                array[ini] = array[i];
+                array[i] = temp;
+                ini++;
+                i++;
+                
+            }
+            else if(array[i] > b )
+            {
+                temp = array[fin];
+                array[fin] = array[i];
+                array[i] = temp;
+                fin--;
+            }
+            else
+            {
+                i++;
+            }
+            
+            
+        }
+    }
+}
