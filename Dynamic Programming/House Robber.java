@@ -41,8 +41,8 @@ class Solution {
         }
         
         //System.out.println(dp[nums.length-1]);
-        int a = dp[nums.length-1];
+        //int a = dp[nums.length-1];
         
-        return a;
+        return dp[nums.length-1];
     }
 }
